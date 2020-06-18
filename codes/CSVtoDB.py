@@ -43,9 +43,9 @@ class ImportCSVtoDB():
 
     def populate(self):
         tables_data = PopulateTables(self.schema_name, self.engine)
-        tables_data.populate_staging(self.df, self.staging_table_name)
+        self.staging_inserts = tables_data.populate_staging(self.df, self.staging_table_name)
         tables_data.check_primary_key(self.primary_key, self.final_table_name)
-        tables_data.populate_final_table(self.columns)
+        self.final_inserts = tables_data.populate_final_table(self.columns)
         tables_data.commit_and_close_connection()
 
     def main(self):
@@ -64,6 +64,10 @@ class ImportCSVtoDB():
         ImportCSVtoDB.input_and_modify(self)
         ImportCSVtoDB.create(self)
         ImportCSVtoDB.populate(self)
+        print("Data Copied to " + self.final_table_name + " Successfully.")
+        print(self.staging_inserts + " rows inserted in staging table.")
+        print(self.final_inserts + " rows inserted in final table.")
+        exit()
 
 if __name__ == '__main__':
     ImportCSVtoDB().main()

@@ -3,12 +3,12 @@
 #Inverted Comma's are not required when assigning string to variables
 #Warning: Changing the primary_key variable might cause pipeline to crash.
 
-input_csv = codes/input_csv/products.csv
+input_csv = input_csv/products.csv
 dialect = postgresql+psycopg2
 username = postgres
 password = postgres
-host_name = localhost
-port = 54320
+host_name = db
+port = 5432
 database = postman
 schema_name = maharshi_postman
 staging_table_name = products_staging
