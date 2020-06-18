@@ -1,0 +1,7 @@
+\c postman
+
+select count(*) as "no of rows" from maharshi_postman.products p;
+
+select count(sku) as "no of skus" from maharshi_postman.products p;
+
+select name as "top 10 names", count(*) as "number of products" from maharshi_postman.products p group by name order by count(*) desc limit 10;
