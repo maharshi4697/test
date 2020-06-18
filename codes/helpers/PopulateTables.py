@@ -43,8 +43,8 @@ class PopulateTables:
                        """ DROP CONSTRAINT """ + (self.final_table_name+'_pkey') + """;""")
            self.cur.execute(""" ALTER TABLE """ + self.schema_name + "." + self.final_table_name +
                        """ ADD PRIMARY KEY (""" + self.primary_key + """);""")
-        self.cur.execute(""" CREATE INDEX idx ON """ + self.schema_name + "." + self.final_table_name +
-                    """(""" + self.primary_key + """);""")      # Create Index
+        self.cur.execute(""" CREATE INDEX IF NOT EXISTS idx ON """ +
+                self.schema_name + "." + self.final_table_name + """(""" + self.primary_key + """);""")      # Create Index
 
     def populate_final_table(self, columns):
         self.columns = columns
